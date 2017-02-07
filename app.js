@@ -12,9 +12,10 @@
 
     function NarrowItDownController(MenuSearchService) {
         var narrowItDown = this;
+        narrowItDown.searchTerm = '';
 
-        narrowItDown.searchItems = function(searchTerm) {
-            var promise = MenuSearchService.getMatchedMenuItems(searchTerm);
+        narrowItDown.searchItems = function() {
+            var promise = MenuSearchService.getMatchedMenuItems(narrowItDown.searchTerm);
 
             promise.then(function(response) {
                     narrowItDown.message = response.length > 0 ? '' : 'Nothing found';
@@ -42,10 +43,12 @@
                 url: (ApiBasePath + "/menu_items.json")
             }).then(function(result) {
                 var foundItems = [];
-                for (var i = 0; i < result.data.menu_items.length; i++) {
-                    result.data.menu_items[i].description
-                    if (result.data.menu_items[i].description.indexOf(searchTerm) !== -1) {
-                        foundItems.push(result.data.menu_items[i])
+                if (searchTerm.length > 0) {
+                    for (var i = 0; i < result.data.menu_items.length; i++) {
+                        result.data.menu_items[i].description
+                        if (result.data.menu_items[i].description.indexOf(searchTerm) !== -1) {
+                            foundItems.push(result.data.menu_items[i])
+                        }
                     }
                 }
                 return foundItems;

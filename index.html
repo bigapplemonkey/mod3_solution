@@ -12,7 +12,7 @@
     <div class="container" ng-controller="NarrowItDownController as narrowItDown">
         <h1>Narrow Down Your Chinese Menu Choice</h1>
         <div class="form-group">
-            <input type="text" placeholder="search term" class="form-control" ng-model="searchTerm">
+            <input type="text" placeholder="search term" class="form-control" ng-model="narrowItDown.searchTerm">
         </div>
         <div class="form-group narrow-button">
             <button class="btn btn-primary" ng-click="narrowItDown.searchItems(searchTerm)">Narrow It Down For Me!</button>
