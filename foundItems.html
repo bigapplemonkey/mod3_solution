@@ -1,0 +1,10 @@
+<div class="container">
+    <h3 ng-if="dirCtrl.message">{{dirCtrl.message}}</h3>
+    <ul>
+        <li ng-repeat="item in dirCtrl.items">
+            <h5>{{item.short_name}}: {{item.name}}</h5>
+            <p class="capitalize">{{item.description}}</p>
+            <button class="btn btn-secondary" ng-click="dirCtrl.onRemove({index: $index})">Don't want this one!</button>
+        </li>
+    </ul>
+</div>
