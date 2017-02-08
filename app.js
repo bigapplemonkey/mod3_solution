@@ -1,9 +1,9 @@
 (function() {
     'use strict';
 
-    angular.module('NarrowItDownApp', [])
+    angular.module('NarrowItDownApp', ['ngAnimate'])
         .controller('NarrowItDownController', NarrowItDownController)
-        .controller('DirectiveController', DirectiveController)
+        // .controller('DirectiveController', DirectiveController)
         .service('MenuSearchService', MenuSearchService)
         .constant('ApiBasePath', 'https://davids-restaurant.herokuapp.com')
         .directive('foundItems', FoundItems);
@@ -12,6 +12,8 @@
 
     function NarrowItDownController(MenuSearchService) {
         var narrowItDown = this;
+        narrowItDown.found = [];
+        narrowItDown.message = '';
         narrowItDown.searchTerm = '';
 
         narrowItDown.searchItems = function() {
@@ -65,15 +67,11 @@
                 message: '<',
                 onRemove: '&'
             },
-            controller: DirectiveController,
+            controller: NarrowItDownController,
             controllerAs: 'dirCtrl',
             bindToController: true
         };
         return ddo;
-    }
-
-    function DirectiveController() {
-        var dirCtrl = this;
     }
 
 })();
